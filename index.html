@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>在线代码格式化</title> 
+
+<meta http-equiv="Content-Language" content="zh-CN"> 
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon"> 
+<link rel="stylesheet" href="./assets/basic.css" type="text/css">
+<script type="text/javascript" src="./assets/jquery-1.7.2.js"></script>
+<link rel="stylesheet" href="./assets/bootstrap.min.css">
+<script src="./assets/bootstrap.min.js"></script>
+
+<link id="css" rel="stylesheet" type="text/css" href="./assets/style.css"/>
+<script type="text/javascript" src="./assets/jquery.textarearesizer.compressed.js"></script>
+
+<link href="./assets/s.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="./assets/c.js"></script>
+
+<script>
+$(function(){
+	$('textarea.resizable:not(.processed)').TextAreaResizer();
+	$('div.resizable:not(.processed)').TextAreaResizer();
+});
+</script>
+
+<script type="text/javascript">
+	function format_(){
+		var json = $("#jsondata").val();
+		$("#fjson").html(fmt);
+	}
+</script>
+
+<style>
+		.leftBar .title,.rightBar .title,.topBar .title{margin-bottom:10px;}
+		.bottomBar .title{margin:10px 0;}
+</style>
+
+</head>
+<body>
+	<!--     头部header开始    -->
+<div id="header">
+	
+</div>
+<!--     头部header结束    -->
+
+<div id="mainContent" class="tool_content wrapper">
+    <div class="toolUsing clearfix">
+		<form id="codeformat_form" action="http://tool.oschina.net/action/format/json" method="POST">
+			<div class="topBar">
+			    <div class="title">待格式化JSON：</div>
+				<textarea name="json" id="RawJson" style="resize:none;" class="resizable"></textarea>
+			</div>
+			<div class="operateTB form-inline">
+				<label for="TabSize">缩进量：</label>
+				<select id="TabSize" onchange="TabSizeChanged()" class="span1">
+			      <option value="1">1</option>
+			      <option value="2" selected="true">2</option>
+			      <option value="3">3</option>
+			      <option value="4">4</option>
+			      <option value="5">5</option>
+			      <option value="6">6</option>
+			    </select>
+				<label for="QuoteKeys" class="checkbox">
+					<input type="checkbox" id="QuoteKeys" onclick="QuoteKeysClicked()" checked="true">引号
+			  	</label>
+				<span id="CollapsibleViewHolder">
+			      <label for="CollapsibleView"  class="checkbox">
+			        <input type="checkbox" id="CollapsibleView" onclick="CollapsibleViewClicked()" checked="true">显示控制
+			      </label>
+			  </span>
+			  <span id="CollapsibleViewDetail" style="visibility: visible;margin-right:10px; ">
+			    <a href="javascript:void(0);" onclick="ExpandAllClicked()">展开</a>
+			    <a href="javascript:void(0);" onclick="CollapseAllClicked()">叠起</a>
+			    <a href="javascript:void(0);" onclick="CollapseLevel(3)">2级</a>
+			    <a href="javascript:void(0);" onclick="CollapseLevel(4)">3级</a>
+			    <a href="javascript:void(0);" onclick="CollapseLevel(5)">4级</a>
+			    <a href="javascript:void(0);" onclick="CollapseLevel(6)">5级</a>
+			    <a href="javascript:void(0);" onclick="CollapseLevel(7)">6级</a>
+			    <a href="javascript:void(0);" onclick="CollapseLevel(8)">7级</a>
+			    <a href="javascript:void(0);" onclick="CollapseLevel(9)">8级</a>
+			  </span>
+			  <input class="btn btn-small btn-primary" data-loading-text="正在格式化json..." id="format"  type="button" onclick="Process()" value="格式化"/>
+			</div>
+			<div class="bottomBar">
+			    <div class="title">格式化JSON：</div>
+				<div id="Canvas" class="Canvas well resizable" style="height:200px;overflow:auto;margin-bottom:0px;"></div>
+			</div>
+        </form>
+    </div>
+</div>
+	<!--     尾部footer开始    -->
+<div id="footer">
+	<p class="wrapper">Copyright &copy; 2016. All rights reserved.</p>
+</div>
+<!--     尾部footer结束    -->
+</body>
+</html>

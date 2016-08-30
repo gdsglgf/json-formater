@@ -42,14 +42,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public Date getRegisterTime() {
         return registerTime;
     }
@@ -69,6 +61,5 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String phone;
     private Date registerTime;
 }

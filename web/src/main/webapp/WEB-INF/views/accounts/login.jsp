@@ -7,24 +7,12 @@
 	<title></title>
 
 	<link rel="stylesheet" href="${cdnUrl}/css/bootstrap.min.css">
-	<style type="text/css">
-		.footer {
-			position: absolute;
-			bottom: 0;
-			width: 100%;
-			height: 60px;
-			/*background-color: #f5f5f5;*/
-		}
-		.text-muted {
-			margin: 20px 0;
-		}
-	</style>
+	<link rel="stylesheet" href="${cdnUrl}/css/footer.css">
 	<style type="text/css">
 		body {
 		    padding-top: 40px;
 			padding-bottom: 40px;
 			background-color: #eee;
-			background: url(${cdnUrl}/images/HubeiSinkhole_ZH-CN8831229647_1920x1080.jpg)no-repeat;
 		}
 		.auth-form {
 			width: 300px;
@@ -43,20 +31,21 @@
 	</style>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="auth-form">
-			<form action="" method="get">
+			<div class="alert alert-error hide"></div>
+			<form id="login-form" onsubmit="onSubmit(); return false;">
 				<div class="form-group">
-					<label>Email address</label>
-					<input type="email" autofocus="autofocus" class="form-control" id="email" name="email" placeholder="Email" required>
+					<label>Username</label>
+					<input type="text" autofocus="autofocus" class="form-control" id="username" name="username" placeholder="Username" required>
 				</div>
 				<div class="form-group">
-					<label>Password <a href="password_reset" class="label-link">Forgot password?</a></label>
+					<label>Password <a onclick="alert('Please connect administrator!')" class="label-link">Forgot password?</a></label>
 					<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
 				</div>
 				<button type="submit" class="btn btn-success btn-block">Sign in</button>
 			</form>
-			<p class="create-account-callout">New to APP? <a href="register">Create an account</a>.</p>
+			<p class="create-account-callout">New to APP? <a href="<c:url value="/accounts/register" />">Create an account</a>.</p>
 		</div>
 	</div>
 
@@ -68,5 +57,52 @@
 
 	<script type="text/javascript" src="${cdnUrl}/js/jquery.min.js"></script>
 	<script type="text/javascript" src="${cdnUrl}/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${cdnUrl}/js/md5.min.js"></script>
+
+	<script type="text/javascript">
+		function onSubmit() {
+			$('button[type=submit]').attr('disabled', 'disabled');
+            $('button[type=submit]').html('Please wait...');
+            var username   = $('#username').val(),
+                password   = md5($('#password').val());
+
+            $('#password').val(password);
+
+            var postData = {
+                'username': username,
+                'password': password
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '<c:url value="/accounts/login.action" />',
+                data: postData,
+                dataType: 'JSON',
+                success: function(result){
+                    return processLoginResult(result);
+                }
+            });
+		}
+	</script>
+	<script type="text/javascript">
+        function processLoginResult(result) {
+            if ( result['isSuccessful'] ) {
+                var forwardUrl = '${forwardUrl}' || '<c:url value="/" />';
+                window.location.href = forwardUrl;
+            } else {
+                var errorMessage = '';
+                if ( !result['isAccountValid'] ) {
+                    errorMessage = 'Incorrect username or password.';
+                } else if ( !result['isAllowedToAccess'] ) {
+                    errorMessage = 'You&acute;re not allowed to sign in.';
+                }
+                $('#password').val('');
+                $('.alert-error').html(errorMessage);
+                $('.alert-error').removeClass('hide');
+            }
+            $('button[type=submit]').html('Sign in');
+            $('button[type=submit]').removeAttr('disabled');
+        }
+    </script>
 </body>
 </html>

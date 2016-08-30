@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
 
-	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../assets/css/footer.css">
-	<link rel="stylesheet" href="../assets/css/s.css">
+	<link rel="stylesheet" href="${cdnUrl}/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${cdnUrl}/css/footer.css">
+	<link rel="stylesheet" href="${cdnUrl}/css/s.css">
 
 	<style type="text/css">
 		body {
@@ -55,16 +55,16 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
-						<a data-toggle="dropdown" class="dropdown-toggle" href="#">管理员<b class="caret"></b></a>
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">Welcome ${username}<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">
-								<i class="glyphicon glyphicon-user"></i> 我的账户</a>
+								<i class="glyphicon glyphicon-user"></i> Profile</a>
 							</li>
 							<li><a href="#">
-								<i class="glyphicon glyphicon-cog"></i> 账户设置</a>
+								<i class="glyphicon glyphicon-cog"></i> Settings</a>
 							</li>
 							<li><a href="login.html">
-								<i class="glyphicon glyphicon-log-out"></i> 退出</a>
+								<i class="glyphicon glyphicon-log-out"></i> Logout</a>
 							</li>
 						</ul>
 					</li>
@@ -74,41 +74,41 @@
 	</div>
 	<div class="container-fluid">
 		<div class="page-header">
-			<h2>待格式化JSON：</h2>
+			<h2>Original JSON:</h2>
 		</div>
 		<div class="row">
 			<textarea name="json" id="RawJson" class="col-md-10 col-md-offset-1">{"number":1,"array":[],"null":null,"string":"test","boolean":true,"obj":{},"level1":{"level2":{"level3":{"level4":{"level5":{"level6":{"level7":{"level8":{}}}}}}}}}</textarea>
 		</div>
 
 		<div class="row" style="padding-top:20px;">
-			<label for="TabSize" class="col-md-1 col-md-offset-1">缩进量：</label>
+			<label for="TabSize" class="col-md-1 col-md-offset-1">Spaces:</label>
 			<select id="TabSize" onchange="TabSizeChanged()" class="col-md-1 span1">
 				<option value="2" selected="true">2</option>
 				<option value="4">4</option>
 				<option value="8">8</option>
 			</select>
 			<label for="QuoteKeys" class="col-md-1">
-				<input type="checkbox" id="QuoteKeys" onclick="QuoteKeysClicked()" checked="true">引号
+				<input type="checkbox" id="QuoteKeys" onclick="QuoteKeysClicked()" checked="true">Quote
 			</label>
 			<label for="CollapsibleView" class="col-md-1">
-				<input type="checkbox" id="CollapsibleView" onclick="CollapsibleViewClicked()" checked="true">显示控制
+				<input type="checkbox" id="CollapsibleView" onclick="CollapsibleViewClicked()" checked="true">Control
 			</label>
 			<span id="CollapsibleViewDetail" class="col-md-4">
-				<a href="javascript:void(0);" onclick="ExpandAllClicked()">展开</a>
-				<a href="javascript:void(0);" class="setting-space" onclick="CollapseAllClicked()">叠起</a>
-				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(3)">2级</a>
-				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(4)">3级</a>
-				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(5)">4级</a>
-				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(6)">5级</a>
-				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(7)">6级</a>
-				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(8)">7级</a>
-				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(9)">8级</a>
+				<a href="javascript:void(0);" onclick="ExpandAllClicked()">Expand</a>
+				<a href="javascript:void(0);" class="setting-space" onclick="CollapseAllClicked()">Collapse</a>
+				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(3)">L2</a>
+				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(4)">L3</a>
+				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(5)">L4</a>
+				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(6)">L5</a>
+				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(7)">L6</a>
+				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(8)">L7</a>
+				<a href="javascript:void(0);" class="setting-space" onclick="CollapseLevel(9)">L8</a>
 			</span>
-			<input class="col-md-1 btn btn-small btn-primary" data-loading-text="正在格式化json..." id="format" type="button" onclick="processJson()" value="格式化"/>
+			<input class="col-md-1 btn btn-small btn-primary" data-loading-text="Formatting json..." id="format" type="button" onclick="processJson()" value="Format"/>
 		</div>
 
 		<div class="page-header">
-			<h2>格式化JSON：</h2>
+			<h2>Formated JSON:</h2>
 		</div>
 		<div class="row">
 			<div id="Canvas" class="Canvas well resizable col-md-10 col-md-offset-1"></div>
@@ -121,9 +121,9 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
-	<script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../assets/js/c.js"></script>
+	<script type="text/javascript" src="${cdnUrl}/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${cdnUrl}/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${cdnUrl}/js/c.js"></script>
 
 	<script type="text/javascript">
 		function processJson() {

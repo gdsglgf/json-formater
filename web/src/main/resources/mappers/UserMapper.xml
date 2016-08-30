@@ -9,7 +9,6 @@
 		<id property="uid" column="uid" />
 		<result property="username" column="username" />
 		<result property="password" column="password" />
-		<result property="phone" column="phone" />
 		<result property="email" column="email" />
 		<result property="registerTime" column="register_time" />
 	</resultMap>
@@ -20,7 +19,7 @@
 		resultMap="UserResultMap"
 		useCache="true">
 		SELECT * 
-		FROM cims_user 
+		FROM t_user 
 		WHERE uid = #{uid}
 	</select>
 </mapper>

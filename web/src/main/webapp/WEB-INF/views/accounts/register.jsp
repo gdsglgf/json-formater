@@ -7,39 +7,21 @@
 	<title></title>
 
 	<link rel="stylesheet" href="${cdnUrl}/css/bootstrap.min.css">
-	<style type="text/css">
-		.footer {
-			position: absolute;
-			bottom: 0;
-			width: 100%;
-			height: 60px;
-			/*background-color: #f5f5f5;*/
-		}
-		.text-muted {
-			margin: 20px 0;
-		}
-	</style>
+	<link rel="stylesheet" href="${cdnUrl}/css/footer.css">
 	<style type="text/css">
 		body {
 		    padding-top: 20px;
 			padding-bottom: 20px;
 			background-color: #eee;
-			background: url(${cdnUrl}/images/HubeiSinkhole_ZH-CN8831229647_1920x1080.jpg)no-repeat;
 		}
 		.auth-form {
 			width: 300px;
 			margin: 10% auto;
 		}
-		.label-link {
-			float: right;
-		}
-		label {
-			display: block;
-		}
 	</style>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="auth-form">
 			<form action="" method="get">
 				<div class="form-group">
@@ -49,10 +31,6 @@
 				<div class="form-group">
 					<label>Email Address</label>
 					<input type="email" class="form-control" id="email" name="email" required>
-				</div>
-				<div class="form-group">
-					<label>Phone Number</label>
-					<input type="text" class="form-control" id="phone" name="phone" required>
 				</div>
 				<div class="form-group">
 					<label>Password</label>
@@ -69,7 +47,7 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript" src="${cdnUrl}/js/jquery.min.js"></script>
-	<script type="text/javascript" src="${cdnUrl}/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>

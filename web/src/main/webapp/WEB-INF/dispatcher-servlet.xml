@@ -26,6 +26,7 @@
     <!-- Spring MVC config -->
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/assets/**" location="/assets/" />
+	<mvc:resources mapping="/static/**" location="/static/" />
 
 	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

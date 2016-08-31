@@ -32,14 +32,6 @@ public interface UserMapper {
      * @return 预期的用户对象或空引用
      */
     public User getByEmail(@Param("email") String email);
-    
-    
-    /**
-     * 通过电话号码获取用户对象.
-     * @param phone
-     * @return
-     */
-    public User getByPhone(@Param("phone") String phone);
 
     /**
      * 创建新用户对象.

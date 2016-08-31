@@ -11,10 +11,6 @@
 	<link rel="stylesheet" href="${cdnUrl}/css/s.css">
 
 	<style type="text/css">
-		body {
-			padding-top: 50px;
-		}
-
 		.setting-space {
 			padding-left:20px;
 		}
@@ -37,33 +33,21 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#about">About</a></li>
-				<li><a href="#contact">Contact</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li role="separator" class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul>
-				</li>
+					<li class="active"><a href="#">Formater</a></li>
+					<li><a href="static/history.html">History</a></li>
+					<li><a href="static/help.html">Help</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="#">Welcome ${username}<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">
+							<li><a href="static/profile.html">
 								<i class="glyphicon glyphicon-user"></i> Profile</a>
 							</li>
-							<li><a href="#">
+							<li><a href="static/settings.html">
 								<i class="glyphicon glyphicon-cog"></i> Settings</a>
 							</li>
-							<li><a href="login.html">
+							<li><a href="accounts/login">
 								<i class="glyphicon glyphicon-log-out"></i> Logout</a>
 							</li>
 						</ul>

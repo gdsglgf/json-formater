@@ -10,6 +10,7 @@ create table t_history(
 	hid bigint(20) not null auto_increment primary key,
 	uid bigint(20) not null,
 	content varchar(1024) not null,
+	submit_time timestamp not null default current_timestamp,
 
 	foreign key (uid) references t_user(uid)
 );

@@ -77,21 +77,4 @@ public class AccountsController {
         log.debug("request register view");
         return new ModelAndView("accounts/register");
     }
-    
-    @RequestMapping(value = "{uid}", method = RequestMethod.GET)
-    public @ResponseBody String getUserAction(
-            @PathVariable("uid") int uid,
-            HttpServletRequest request, HttpServletResponse response) {
-        return "user-" + uid;
-    }
-    
-    @RequestMapping(value = "/test-{uid}", method = RequestMethod.GET)
-    public @ResponseBody Map<String, Object> test(
-            @PathVariable("uid") int uid,
-            HttpServletRequest request, HttpServletResponse response) {
-        Map<String, Object> result = new HashMap<String, Object>();
-        result.put("uid", uid);
-        result.put("username", "user-" + uid);
-        return result;
-    }
 }

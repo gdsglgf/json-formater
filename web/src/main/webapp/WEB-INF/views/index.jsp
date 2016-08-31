@@ -61,21 +61,23 @@
 			<h2>Original JSON:</h2>
 		</div>
 		<div class="row">
-			<textarea name="json" id="RawJson" class="col-md-10 col-md-offset-1">{"number":1,"array":[],"null":null,"string":"test","boolean":true,"obj":{},"level1":{"level2":{"level3":{"level4":{"level5":{"level6":{"level7":{"level8":{}}}}}}}}}</textarea>
+			<div class="col-md-10 col-md-offset-1">
+				<textarea name="json" id="RawJson" class="form-control">{"number":1,"array":[],"null":null,"string":"test","boolean":true,"obj":{},"level1":{"level2":{"level3":{"level4":{"level5":{"level6":{"level7":{"level8":{}}}}}}}}}</textarea>
+			</div>
 		</div>
 
 		<div class="row" style="padding-top:20px;">
 			<label for="TabSize" class="col-md-1 col-md-offset-1">Spaces:</label>
 			<select id="TabSize" onchange="TabSizeChanged()" class="col-md-1 span1">
-				<option value="2" selected="true">2</option>
+				<option value="2" selected>2</option>
 				<option value="4">4</option>
 				<option value="8">8</option>
 			</select>
 			<label for="QuoteKeys" class="col-md-1">
-				<input type="checkbox" id="QuoteKeys" onclick="QuoteKeysClicked()" checked="true">Quote
+				<input type="checkbox" id="QuoteKeys" onclick="QuoteKeysClicked()" checked>Quote
 			</label>
 			<label for="CollapsibleView" class="col-md-1">
-				<input type="checkbox" id="CollapsibleView" onclick="CollapsibleViewClicked()" checked="true">Control
+				<input type="checkbox" id="CollapsibleView" onclick="CollapsibleViewClicked()" checked>Control
 			</label>
 			<span id="CollapsibleViewDetail" class="col-md-4">
 				<a href="javascript:void(0);" onclick="ExpandAllClicked()">Expand</a>

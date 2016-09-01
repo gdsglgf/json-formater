@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 处理应用程序公共的请求.
+ * 
+ * @author Luo Guofu
+ */
 @Controller
 @RequestMapping(value = "/")
 public class DefaultController {

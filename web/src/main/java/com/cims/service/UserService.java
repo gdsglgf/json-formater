@@ -12,6 +12,10 @@ import com.cims.mapper.UserMapper;
 import com.cims.model.User;
 import com.cims.util.DigestUtils;
 
+/**
+ * 用户类(User)的业务逻辑层.
+ * @author Luo Guofu
+ */
 @Service
 @Transactional
 public class UserService {
@@ -26,7 +30,7 @@ public class UserService {
     
     /**
 	 * 验证用户身份是否有效.
-	 * @param username - 用户名或电子邮件地址
+	 * @param username - 用户名
 	 * @param password - 密码(已使用MD5加密)
 	 * @return 一个包含登录验证结果的Map<String, Boolean>对象
 	 */
@@ -49,10 +53,22 @@ public class UserService {
 		return result;
 	}
     
+	/**
+	 * 通过用户名获取用户对象.
+	 * @param username - 用户名
+	 * @return 预期的用户对象或空引用
+	 */
     public User getByUsername(String username) {
 		return userMapper.getByUsername(username);
 	}
     
+    /**
+     * 保存用户信息.
+     * @param username - 用户名
+     * @param password - 未加密密码
+     * @param email    - 邮箱
+     * @return 一个包含保存用户结果的Map<String, Boolean>对象
+     */
     public Map<String, Boolean> create(String username, String password,
 			String email) {
     	User user = new User(username, DigestUtils.md5Hex(password), email);
@@ -91,6 +107,13 @@ public class UserService {
 		return user != null;
 	}
 	
+	/**
+	 * 设置用户密码
+	 * @param user         - 用户对象
+	 * @param oldPassword  - MD5加密的原始密码
+	 * @param password     - 未加密新密码
+	 * @return  包含设置用户密码结果的Map<String, Boolean>对象
+	 */
 	public Map<String, Boolean> resetPassword(User user, String oldPassword, String password) {
 		Map<String, Boolean> result = new HashMap<String, Boolean>();
 		result.put("isPasswordEmpty", password.isEmpty());

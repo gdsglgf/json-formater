@@ -21,6 +21,11 @@ import com.cims.util.DateUtils;
 import com.cims.util.HttpRequestParser;
 import com.cims.util.HttpSessionParser;
 
+/**
+ * 处理用户的登录/注册请求.
+ * 
+ * @author Luo Guofu
+ */
 @Controller
 @RequestMapping(value = "/accounts")
 public class AccountsController {
@@ -70,8 +75,6 @@ public class AccountsController {
 		
 		session.setAttribute("isLoggedIn", false);
 	}
-	
-	
     
     /**
 	 * 处理用户的登录请求.
@@ -170,10 +173,10 @@ public class AccountsController {
 	}
 	
 	/**
-	 * 
+	 * 显示设置密码页面.
 	 * @param request - HttpServletRequest对象
 	 * @param response - HttpResponse对象
-	 * @return
+	 * @return 包含设置密码页面的ModelAndView对象
 	 */
 	@RequestMapping(value = "/reset-password", method = RequestMethod.GET)
 	public ModelAndView resetPasswordView(HttpServletRequest request, HttpServletResponse response) {

@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 import com.cims.model.User;
 import com.cims.service.UserService;
 
+/**
+ * HttpSession解析器.
+ * @author Luo Guofu
+ */
 @Component
 public class HttpSessionParser {
 	/**
@@ -54,6 +58,11 @@ public class HttpSessionParser {
 		return true;
 	}
 	
+	/**
+	 * 返回登录用户的uid.
+	 * @param session - HttpSession 对象
+	 * @return 登录用户的uid, 如果用户未登录, 返回null.
+	 */
 	public static Long getUid(HttpSession session) {
 		Long uid = null;
 		if (isLoggedIn(session)) {

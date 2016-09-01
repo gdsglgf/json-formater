@@ -2,6 +2,10 @@ package com.cims.util;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * HttpRequest解析器.
+ * @author Luo Guofu
+ */
 public class HttpRequestParser {
 	/**
 	 * Utility classes should not have a public constructor.

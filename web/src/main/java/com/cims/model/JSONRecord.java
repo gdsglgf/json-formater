@@ -2,9 +2,23 @@ package com.cims.model;
 
 import java.util.Date;
 
+/**
+ * 历史数据Model.
+ * 对应数据库中的t_history数据表.
+ * 
+ * @author Luo Guofu
+ */
 public class JSONRecord {
+	/**
+	 * 历史数据的默认构造函数. 
+	 */
 	public JSONRecord() {}
 
+	/**
+	 * 历史数据的构造函数.
+	 * @param uid - 用户唯一标识符
+	 * @param content - 用户输入的json字符串
+	 */
 	public JSONRecord(long uid, String content) {
 		this.uid = uid;
 		this.content = content;

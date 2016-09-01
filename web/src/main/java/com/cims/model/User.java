@@ -2,19 +2,46 @@ package com.cims.model;
 
 import java.util.Date;
 
+/**
+ * 用户的Model.
+ * 对应数据库中的t_user数据表.
+ * 
+ * @author Luo Guofu
+ */
 public class User {
+	/**
+	 * 用户的默认构造函数. 
+	 */
     public User() {}
     
+    /**
+	 * 用户的构造函数.
+	 * @param username - 用户名
+	 * @param password - 密码
+     */
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
     
+    /**
+	 * 用户的构造函数.
+	 * @param username - 用户名
+	 * @param password - 密码
+	 * @param email - 电子邮件地址
+     */
     public User(String username, String password, String email) {
 		this(username, password);
 		this.email = email;
 	}
 
+    /**
+	 * 用户的构造函数.
+	 * @param username - 用户名
+	 * @param password - 密码
+	 * @param email - 电子邮件地址
+     * @param registerTime - 注册时间
+     */
 	public User(String username, String password, String email,
 			Date registerTime) {
 		this(username, password, email);

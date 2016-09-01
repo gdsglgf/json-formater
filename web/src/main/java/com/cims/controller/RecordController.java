@@ -23,6 +23,12 @@ import com.cims.model.JSONRecord;
 import com.cims.service.RecordService;
 import com.cims.util.HttpSessionParser;
 
+/**
+ * 处理历史信息的请求.
+ * 
+ * @author Luo Guofu
+ */
+
 @Controller
 @RequestMapping(value = "/records")
 public class RecordController {
@@ -31,6 +37,12 @@ public class RecordController {
 	@Autowired
 	private RecordService recordService;
 
+	/**
+	 * 保存登录用户的历史数据.
+	 * @param content - json 字符串
+	 * @param request HttpRequest对象
+	 * @return 包含保存json字符串信息的Map<String, Object>对象
+	 */
 	@RequestMapping(value = "/save.action", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> saveAction(
 			@RequestParam(value = "content", required = true) String content,
@@ -50,6 +62,12 @@ public class RecordController {
 		return result;
 	}
 
+	/**
+	 * 显示历史查询信息页面.
+	 * @param request - HttpServletRequest对象
+	 * @param response - HttpServletResponse对象
+	 * @return 历史查询信息页面的ModelAndView对象
+	 */
 	@RequestMapping(value = "/history", method = RequestMethod.GET)
 	public ModelAndView historyView(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -58,6 +76,12 @@ public class RecordController {
 		return view;
 	}
 
+	/**
+	 * 处理历史信息查询请求.
+	 * @param request - HttpServletRequest对象
+	 * @param response - HttpServletResponse对象
+	 * @return 
+	 */
 	@RequestMapping(value = "/search.action", method = RequestMethod.POST)
 	public @ResponseBody List<RecordDTO> searchAction(
 			HttpServletRequest request, HttpServletResponse response) {

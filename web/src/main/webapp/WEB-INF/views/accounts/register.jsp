@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="${cdnUrl}/css/footer.css">
 	<style type="text/css">
 		body {
-		    padding-top: 20px;
+			padding-top: 20px;
 			padding-bottom: 20px;
 			background-color: #eee;
 		}
@@ -23,7 +23,8 @@
 <body>
 	<div class="container">
 		<div class="auth-form">
-			<form action="" method="get">
+			<div class="alert alert-error bg-danger text-success hide"></div>
+			<form onsubmit="onSubmit(); return false;">
 				<div class="form-group">
 					<label>Username</label>
 					<input type="text" autofocus="autofocus" class="form-control" id="username" name="username" required>
@@ -36,7 +37,7 @@
 					<label>Password</label>
 					<input type="password" class="form-control" id="password" name="password" required>
 				</div>
-				<button type="submit" class="btn btn-success btn-block">Create an account</button>
+				<button type="submit" class="btn btn-success btn-block">Create account</button>
 			</form>
 		</div>
 	</div>
@@ -47,7 +48,66 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${cdnUrl}/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${cdnUrl}/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		function onSubmit() {
+			$('.alert-error').addClass('hide');
+			$('button[type=submit]').attr('disabled', 'disabled');
+			$('button[type=submit]').html('Please wait...');
+			var username   = $('#username').val(),
+				password   = $('#password').val(),
+				email	  = $('#email').val();
+
+			doRegisterAction(username, password, email);
+		}
+	</script>
+	<script type="text/javascript">
+		function doRegisterAction(username, password, email) {
+			var postData = {
+				'username': username,
+				'password': password,
+				'email': email
+			};
+			
+			console.log(username + '---' + email);
+
+			$.ajax({
+				type: 'POST',
+				url: '<c:url value="/accounts/register.action" />',
+				data: postData,
+				dataType: 'JSON',
+				success: function(result){
+					return processRegisterResult(result);
+				}
+			});
+		}
+	</script>
+	<script type="text/javascript">
+		function processRegisterResult(result) {
+			if ( result['isSuccessful'] ) {
+				var forwardUrl = '${forwardUrl}' || '<c:url value="/" />';
+				window.location.href = forwardUrl;
+			} else {
+				var errorMessage  = '';
+				if ( result['isUsernameExists'] ) {
+					errorMessage += 'Someone already has that username.<br>';
+				}
+				if ( result['isEmailExists'] ) {
+					errorMessage += 'Someone already use that email.<br>';
+				}
+				
+				console.log(errorMessage);
+
+				$('.alert-error').html(errorMessage);
+				$('.alert-error').removeClass('hide');
+			}
+
+			$('button[type=submit]').html('Create Account');
+			$('button[type=submit]').removeAttr('disabled');
+			$('html, body').animate({ scrollTop: 0 }, 100);
+		}
+	</script>
 </body>
 </html>

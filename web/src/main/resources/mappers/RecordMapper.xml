@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cims.mapper.RecordMapper">
+	<!-- ResultMap -->
+	<resultMap id="RecordResultMap" 
+		type="com.cims.model.JSONRecord">
+		<id property="hid" column="hid" />
+		<result property="uid" column="uid" />
+		<result property="content" column="content" />
+		<result property="submitTime" column="submit_time" />
+	</resultMap>
+	
+	<select id="searchAll" 
+		parameterType="map"
+		resultMap="RecordResultMap"
+		useCache="true">
+		SELECT * 
+		FROM t_history 
+		WHERE uid = #{uid}
+	</select>
+	
+	<insert id="create" 
+		parameterType="com.cims.model.JSONRecord"
+		flushCache="true" 
+		keyProperty="hid" 
+		keyColumn="hid"
+		useGeneratedKeys="true">
+		INSERT INTO t_history (uid, content) 
+		VALUES (#{uid}, #{content})
+	</insert>
+</mapper>

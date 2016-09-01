@@ -42,6 +42,27 @@ public class HttpSessionParser {
 	}
 	
 	/**
+	 * 检查用户是否已经登录.
+	 * @param session - HttpSession 对象
+	 * @return 用户是否已经登录
+	 */
+	public static boolean isLoggedIn(HttpSession session) {
+		Boolean isLoggedIn = (Boolean)session.getAttribute("isLoggedIn");
+		if ( isLoggedIn == null || !isLoggedIn.booleanValue() ) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static Long getUid(HttpSession session) {
+		Long uid = null;
+		if (isLoggedIn(session)) {
+			uid = (Long) session.getAttribute("uid");
+		}
+		return uid;
+	}
+	
+	/**
 	 * 自动注入的UserService对象.
 	 */
 	private static UserService userService;

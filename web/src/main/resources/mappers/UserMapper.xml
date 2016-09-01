@@ -22,4 +22,40 @@
 		FROM t_user 
 		WHERE uid = #{uid}
 	</select>
+
+	<select id="getByUsername" 
+		parameterType="String"
+		resultMap="UserResultMap"
+		useCache="true">
+		SELECT * 
+		FROM t_user 
+		WHERE username = #{username}
+	</select>
+	
+	<select id="getByEmail" 
+		parameterType="String"
+		resultMap="UserResultMap"
+		useCache="true">
+		SELECT * 
+		FROM t_user 
+		WHERE email = #{email}
+	</select>
+	
+	<insert id="create" 
+		parameterType="com.cims.model.User"
+		flushCache="true" 
+		keyProperty="uid" 
+		keyColumn="uid"
+		useGeneratedKeys="true">
+		INSERT INTO t_user (username, password, email) 
+		VALUES (#{username}, #{password}, #{email})
+	</insert>
+	
+	<update id="update"
+		parameterType="com.cims.model.User"
+		flushCache="true">
+		UPDATE t_user 
+		SET username = #{username}, password = #{password}, email = #{email} 
+		WHERE uid = #{uid}
+	</update>
 </mapper>

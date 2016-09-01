@@ -29,25 +29,25 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Project name</a>
+				<a class="navbar-brand" href="#">JSON Formater</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Formater</a></li>
-					<li><a href="static/history.html">History</a></li>
-					<li><a href="static/help.html">Help</a></li>
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="<c:url value="/records/history" />">History</a></li>
+					<li><a href="">Help</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="#">Welcome ${username}<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="static/profile.html">
+							<li><a href="<c:url value="/accounts/profile" />">
 								<i class="glyphicon glyphicon-user"></i> Profile</a>
 							</li>
-							<li><a href="static/settings.html">
+							<li><a href="<c:url value="/accounts/reset-password" />">
 								<i class="glyphicon glyphicon-cog"></i> Settings</a>
 							</li>
-							<li><a href="accounts/login">
+							<li><a href="<c:url value="/accounts/login?logout=true" />">
 								<i class="glyphicon glyphicon-log-out"></i> Logout</a>
 							</li>
 						</ul>
@@ -113,11 +113,35 @@
 
 	<script type="text/javascript">
 		function processJson() {
+			var json = $id("RawJson").value;
+			if (json == '') {
+				alert('Please enter json string.');
+				return;
+			}
 			var formated = Process();
 			if (formated) {
-				var json = $id("RawJson").value;
-				console.log(json);
+				
+				doSaveAction(json);
 			}
+		}
+	</script>
+
+	<script type="text/javascript">
+		function doSaveAction(json) {
+			var postData = {
+				'content': json
+			}
+
+			$.ajax({
+				type: 'POST',
+				url: '<c:url value="/records/save.action" />',
+				data: postData,
+				dataType: 'JSON',
+				success: function(result){
+					console.log(result)
+					return true;
+				}
+			});
 		}
 	</script>
 </body>

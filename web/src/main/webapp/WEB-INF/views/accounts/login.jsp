@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="${cdnUrl}/css/footer.css">
 	<style type="text/css">
 		body {
-		    padding-top: 40px;
+			padding-top: 40px;
 			padding-bottom: 40px;
 			background-color: #eee;
 		}
@@ -33,7 +33,7 @@
 <body>
 	<div class="container">
 		<div class="auth-form">
-			<div class="alert alert-error hide"></div>
+			<div class="alert alert-error bg-danger text-success hide"></div>
 			<form id="login-form" onsubmit="onSubmit(); return false;">
 				<div class="form-group">
 					<label>Username</label>
@@ -61,48 +61,54 @@
 
 	<script type="text/javascript">
 		function onSubmit() {
+			$('.alert-error').addClass('hide');
 			$('button[type=submit]').attr('disabled', 'disabled');
-            $('button[type=submit]').html('Please wait...');
-            var username   = $('#username').val(),
-                password   = md5($('#password').val());
+			$('button[type=submit]').html('Please wait...');
+			var username   = $('#username').val(),
+				password   = md5($('#password').val());
 
-            $('#password').val(password);
+			$('#password').val(password);
 
-            var postData = {
-                'username': username,
-                'password': password
-            };
-
-            $.ajax({
-                type: 'POST',
-                url: '<c:url value="/accounts/login.action" />',
-                data: postData,
-                dataType: 'JSON',
-                success: function(result){
-                    return processLoginResult(result);
-                }
-            });
+			doLoginAction(username, password);
 		}
 	</script>
 	<script type="text/javascript">
-        function processLoginResult(result) {
-            if ( result['isSuccessful'] ) {
-                var forwardUrl = '${forwardUrl}' || '<c:url value="/" />';
-                window.location.href = forwardUrl;
-            } else {
-                var errorMessage = '';
-                if ( !result['isAccountValid'] ) {
-                    errorMessage = 'Incorrect username or password.';
-                } else if ( !result['isAllowedToAccess'] ) {
-                    errorMessage = 'You&acute;re not allowed to sign in.';
-                }
-                $('#password').val('');
-                $('.alert-error').html(errorMessage);
-                $('.alert-error').removeClass('hide');
-            }
-            $('button[type=submit]').html('Sign in');
-            $('button[type=submit]').removeAttr('disabled');
-        }
-    </script>
+		function doLoginAction(username, password) {
+			var postData = {
+				'username': username,
+				'password': password
+			};
+
+			$.ajax({
+				type: 'POST',
+				url: '<c:url value="/accounts/login.action" />',
+				data: postData,
+				dataType: 'JSON',
+				success: function(result){
+					return processLoginResult(result);
+				}
+			});
+		}
+	</script>
+	<script type="text/javascript">
+		function processLoginResult(result) {
+			if ( result['isSuccessful'] ) {
+				var forwardUrl = '${forwardUrl}' || '<c:url value="/" />';
+				window.location.href = forwardUrl;
+			} else {
+				var errorMessage = '';
+				if ( !result['isAccountValid'] ) {
+					errorMessage = 'Incorrect username or password.';
+				} else if ( !result['isAllowedToAccess'] ) {
+					errorMessage = 'You&acute;re not allowed to sign in.';
+				}
+				$('#password').val('');
+				$('.alert-error').html(errorMessage);
+				$('.alert-error').removeClass('hide');
+			}
+			$('button[type=submit]').html('Sign in');
+			$('button[type=submit]').removeAttr('disabled');
+		}
+	</script>
 </body>
 </html>

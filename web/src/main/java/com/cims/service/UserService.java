@@ -3,12 +3,14 @@ package com.cims.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cims.mapper.UserMapper;
 import com.cims.model.User;
+import com.cims.util.DigestUtils;
 
 @Service
 @Transactional
@@ -38,19 +40,71 @@ public class UserService {
 
 		if ( !result.get("isUsernameEmpty") && !result.get("isPasswordEmpty") ) {
 			User user = getByUsername(username);
-//			if ( user != null && user.getPassword().equals(password) ) {
+			if ( user != null && user.getPassword().equals(password) ) {
 				result.put("isAccountValid", true);
 				result.put("isAllowedToAccess", true);
 				result.put("isSuccessful", true);
-//			}
+			}
 		}
 		return result;
 	}
     
     public User getByUsername(String username) {
-		User user = new User(username, "");
-		return user;
+		return userMapper.getByUsername(username);
 	}
+    
+    public Map<String, Boolean> create(String username, String password,
+			String email) {
+    	User user = new User(username, DigestUtils.md5Hex(password), email);
+    	Map<String, Boolean> result = new HashMap<String, Boolean>();
+    	result.put("isUsernameExists", isUsernameExists(user.getUsername()));
+    	log.debug(user.getUsername() + "---" + result.get("isUsernameExists"));
+    	result.put("isEmailExists", isEmailExists(user.getEmail()));
+    	log.debug(user.getEmail() + "---" + result.get("isEmailExists"));
+    	boolean isExists = result.get("isUsernameExists") || result.get("isEmailExists");
+    	result.put("isSuccessful", !isExists);
+    	
+    	if ( result.get("isSuccessful") ) {
+			userMapper.create(user);
+		}
+		return result;
+	}
+    
+    /**
+	 * 检查用户名是否存在.
+	 * @param username - 用户名
+	 * @return 用户名是否存在
+	 */
+	private boolean isUsernameExists(String username) {
+		User user = userMapper.getByUsername(username);
+		return user != null;
+	}
+	
+	/**
+	 * 检查电子邮件地址是否存在.
+	 * 说明: 仅用于用户创建新账户
+	 * @param email - 电子邮件地址
+	 * @return 电子邮件地址是否存在
+	 */
+	private boolean isEmailExists(String email) {
+		User user = userMapper.getByEmail(email);
+		return user != null;
+	}
+	
+	public Map<String, Boolean> resetPassword(User user, String oldPassword, String password) {
+		Map<String, Boolean> result = new HashMap<String, Boolean>();
+		result.put("isPasswordEmpty", password.isEmpty());
+		if (user == null || !user.getPassword().equals(oldPassword) || password.isEmpty()) {
+			result.put("isSuccessful", false);
+		} else {
+			result.put("isSuccessful", true);
+			user.setPassword(DigestUtils.md5Hex(password));
+			userMapper.update(user);
+		}
+		return result;
+	}
+	
+	public static Logger log = Logger.getLogger(UserService.class);
 
     /**
      * 自动注入的UserMapper对象.

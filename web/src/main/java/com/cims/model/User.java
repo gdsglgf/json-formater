@@ -1,6 +1,6 @@
 package com.cims.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class User {
     public User() {}
@@ -10,7 +10,18 @@ public class User {
         this.password = password;
     }
     
-    public long getUid() {
+    public User(String username, String password, String email) {
+		this(username, password);
+		this.email = email;
+	}
+
+	public User(String username, String password, String email,
+			Date registerTime) {
+		this(username, password, email);
+		this.registerTime = registerTime;
+	}
+
+	public long getUid() {
         return uid;
     }
 
@@ -54,7 +65,7 @@ public class User {
      * @see java.lang.Object#toString()
      */
     public String toString() {
-        return String.format("User[%d, %s, %s]", uid, username, password);
+        return String.format("User[%d, %s]", uid, username);
     }
     
     private long uid;

@@ -2,6 +2,7 @@ package com.cims.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,16 @@ public class DefaultController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView indexView(
 			HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView view = new ModelAndView("index");
+		ModelAndView view = null;
+		HttpSession session = request.getSession();
+		Boolean isLoggedIn = (Boolean)session.getAttribute("isLoggedIn");
+		if ( isLoggedIn == null || !isLoggedIn.booleanValue() ) {
+			view = new ModelAndView("accounts/login");
+			view.addObject("isLogout", false);
+		} else {
+			view = new ModelAndView("index");
+		}
+		
 		return view;
 	}
 }

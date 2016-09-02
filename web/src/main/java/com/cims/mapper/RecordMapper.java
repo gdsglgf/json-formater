@@ -15,13 +15,13 @@ import com.cims.model.JSONRecord;
 public interface RecordMapper {
 	/**
 	 * 保存历史信息.
-	 * @param record - 历史信息对象
+	 * @param record 历史信息对象
 	 */
 	public void create(JSONRecord record);
 	
 	/**
 	 * 查询用户的所有历史数据.
-	 * @param uid - 用户唯一标识符
+	 * @param uid 用户唯一标识符
 	 * @return 用户历史数据列表
 	 */
 	public List<JSONRecord> searchAll(long uid);

@@ -16,8 +16,8 @@ public class JSONRecord {
 
 	/**
 	 * 历史数据的构造函数.
-	 * @param uid - 用户唯一标识符
-	 * @param content - 用户输入的json字符串
+	 * @param uid 用户唯一标识符
+	 * @param content 用户输入的json字符串
 	 */
 	public JSONRecord(long uid, String content) {
 		this.uid = uid;
@@ -56,8 +56,15 @@ public class JSONRecord {
 		this.content = content;
 	}
 
+	/** 历史信息唯一标识符 */
 	private long hid;
+	
+	/** 用户唯一标识符 */
 	private long uid;
+	
+	/** 历史信息提交时间 */
 	private Date submitTime;
+	
+	/** 历史数据(json字符串) */
 	private String content;
 }

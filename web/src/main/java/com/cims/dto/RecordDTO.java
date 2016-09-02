@@ -17,7 +17,7 @@ public class RecordDTO {
 
 	/**
 	 * RecordDTO构造函数.
-	 * @param record - 历史数据对象
+	 * @param record 历史数据对象
 	 */
 	public RecordDTO(JSONRecord record) {
 		this.hid = record.getHid();

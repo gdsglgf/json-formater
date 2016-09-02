@@ -33,7 +33,7 @@ public class DateUtils {
 	
 	/**
 	 * 将时间对象格式化成字符串.
-	 * @param date - 时间对象
+	 * @param date 时间对象
 	 * @return 格式化后的字符串.
 	 */
 	public static String format(Date date) {

@@ -39,9 +39,9 @@ public class RecordController {
 
 	/**
 	 * 保存登录用户的历史数据.
-	 * @param content - json 字符串
+	 * @param content json 字符串
 	 * @param request HttpRequest对象
-	 * @return 包含保存json字符串信息的Map<String, Object>对象
+	 * @return 包含保存json字符串信息的Map对象
 	 */
 	@RequestMapping(value = "/save.action", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> saveAction(
@@ -64,8 +64,8 @@ public class RecordController {
 
 	/**
 	 * 显示历史查询信息页面.
-	 * @param request - HttpServletRequest对象
-	 * @param response - HttpServletResponse对象
+	 * @param request HttpServletRequest对象
+	 * @param response HttpServletResponse对象
 	 * @return 历史查询信息页面的ModelAndView对象
 	 */
 	@RequestMapping(value = "/history", method = RequestMethod.GET)
@@ -78,9 +78,9 @@ public class RecordController {
 
 	/**
 	 * 处理历史信息查询请求.
-	 * @param request - HttpServletRequest对象
-	 * @param response - HttpServletResponse对象
-	 * @return 
+	 * @param request HttpServletRequest对象
+	 * @param response HttpServletResponse对象
+	 * @return 用户历史信息列表
 	 */
 	@RequestMapping(value = "/search.action", method = RequestMethod.POST)
 	public @ResponseBody List<RecordDTO> searchAction(

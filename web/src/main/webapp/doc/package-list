@@ -1,0 +1,6 @@
+com.cims.controller
+com.cims.dto
+com.cims.mapper
+com.cims.model
+com.cims.service
+com.cims.util

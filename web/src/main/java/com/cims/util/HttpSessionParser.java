@@ -16,7 +16,7 @@ import com.cims.service.UserService;
 public class HttpSessionParser {
 	/**
 	 * HttpSessionParser的构造函数.
-	 * @param userService - 自动注入的UserService对象
+	 * @param userService 自动注入的UserService对象
 	 */
 	@Autowired
 	private HttpSessionParser(UserService userService) {
@@ -25,7 +25,7 @@ public class HttpSessionParser {
 	
 	/**
 	 * 获取Session中的用户对象.
-	 * @param session - HttpSession对象
+	 * @param session HttpSession对象
 	 * @return Session中的用户对象
 	 */
 	public static User getCurrentUser(HttpSession session) {
@@ -47,7 +47,7 @@ public class HttpSessionParser {
 	
 	/**
 	 * 检查用户是否已经登录.
-	 * @param session - HttpSession 对象
+	 * @param session HttpSession 对象
 	 * @return 用户是否已经登录
 	 */
 	public static boolean isLoggedIn(HttpSession session) {
@@ -60,7 +60,7 @@ public class HttpSessionParser {
 	
 	/**
 	 * 返回登录用户的uid.
-	 * @param session - HttpSession 对象
+	 * @param session HttpSession 对象
 	 * @return 登录用户的uid, 如果用户未登录, 返回null.
 	 */
 	public static Long getUid(HttpSession session) {

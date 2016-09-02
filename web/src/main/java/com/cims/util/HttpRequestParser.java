@@ -14,7 +14,7 @@ public class HttpRequestParser {
 	
 	/**
 	 * 在使用反向代理情况下解析用户的真实IP.
-	 * @param request - HttpRequest对象
+	 * @param request HttpRequest对象
 	 * @return 用户的真实IP
 	 */
 	public static String getRemoteAddr(HttpServletRequest request) {

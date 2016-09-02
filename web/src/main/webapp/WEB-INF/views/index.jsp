@@ -35,7 +35,7 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
 					<li><a href="<c:url value="/records/history" />">History</a></li>
-					<li><a href="">Help</a></li>
+					<li><a target="_blank" href="<c:url value="/doc/index.html" />">API</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">

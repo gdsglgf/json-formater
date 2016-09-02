@@ -36,10 +36,10 @@ public class AccountsController {
 
     /**
 	 * 显示用户的登录页面.
-	 * @param isLogout - 是否处于登出状态
-	 * @param forwardUrl - 登录后跳转的地址(相对路径)
-	 * @param request - HttpServletRequest对象
-	 * @param response - HttpResponse对象
+	 * @param isLogout   是否处于登出状态
+	 * @param forwardUrl 登录后跳转的地址(相对路径)
+	 * @param request    HttpServletRequest对象
+	 * @param response   HttpResponse对象
 	 * @return 包含登录页面信息的ModelAndView对象
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -65,8 +65,8 @@ public class AccountsController {
 	
 	/**
 	 * 为注销的用户销毁Session.
-	 * @param request - HttpServletRequest对象
-	 * @param session - HttpSession 对象
+	 * @param request HttpServletRequest对象
+	 * @param session HttpSession 对象
 	 */
 	private void destroySession(HttpServletRequest request, HttpSession session) {
 		User currentUser = HttpSessionParser.getCurrentUser(request.getSession());
@@ -78,10 +78,10 @@ public class AccountsController {
     
     /**
 	 * 处理用户的登录请求.
-	 * @param username - 用户名
-	 * @param password - 密码(已使用MD5加密)
-	 * @param request - HttpServletRequest对象
-	 * @return 一个包含登录验证结果的Map<String, Boolean>对象
+	 * @param username 用户名
+	 * @param password 密码(已使用MD5加密)
+	 * @param request HttpServletRequest对象
+	 * @return 一个包含登录验证结果的Map对象
 	 */
 	@RequestMapping(value = "/login.action", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Boolean> loginAction(
@@ -100,9 +100,9 @@ public class AccountsController {
 	
 	/**
 	 * 为登录的用户创建Session.
-	 * @param request - HttpServletRequest对象
-	 * @param user - 一个User对象, 包含用户的基本信息
-	 * @param isAutoLoginAllowed - 是否保存登录状态
+	 * @param request HttpServletRequest对象
+	 * @param user 一个User对象, 包含用户的基本信息
+	 * @param isAutoLoginAllowed 是否保存登录状态
 	 */
 	private void getSession(HttpServletRequest request, User user) {
 		HttpSession session = request.getSession();
@@ -122,11 +122,11 @@ public class AccountsController {
     
     /**
 	 * 处理用户注册的请求.
-	 * @param username - 用户名
-	 * @param password - 密码
-	 * @param email - 电子邮件地址
-	 * @param request - HttpServletRequest对象
-	 * @return 一个包含账户创建结果的Map<String, Boolean>对象
+	 * @param username 用户名
+	 * @param password 密码
+	 * @param email 电子邮件地址
+	 * @param request HttpServletRequest对象
+	 * @return 一个包含账户创建结果的Map对象
 	 */
 	@RequestMapping(value = "/register.action", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Boolean> registerAction(
@@ -147,8 +147,8 @@ public class AccountsController {
 	
 	/**
 	 * 显示用户信息页面
-	 * @param request - HttpServletRequest对象
-	 * @param response - HttpResponse对象
+	 * @param request HttpServletRequest对象
+	 * @param response HttpResponse对象
 	 * @return 包含用户信息页面的ModelAndView对象
 	 */
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
@@ -174,8 +174,8 @@ public class AccountsController {
 	
 	/**
 	 * 显示设置密码页面.
-	 * @param request - HttpServletRequest对象
-	 * @param response - HttpResponse对象
+	 * @param request HttpServletRequest对象
+	 * @param response HttpResponse对象
 	 * @return 包含设置密码页面的ModelAndView对象
 	 */
 	@RequestMapping(value = "/reset-password", method = RequestMethod.GET)
@@ -194,10 +194,10 @@ public class AccountsController {
 	
 	/**
 	 * 设置新密码
-	 * @param oldPassword - 原始密码(已使用MD5加密)
-	 * @param password    - 未加密的新密码
-	 * @param request     - HttpServletRequest对象
-	 * @return  包含设置密码信息的Map<String, Boolean>对象
+	 * @param oldPassword 原始密码(已使用MD5加密)
+	 * @param password    未加密的新密码
+	 * @param request     HttpServletRequest对象
+	 * @return  包含设置密码信息的Map对象
 	 */
 	@RequestMapping(value = "/reset-password.action", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Boolean> resetPasswordAction(

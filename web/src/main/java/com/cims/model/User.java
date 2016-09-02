@@ -16,8 +16,8 @@ public class User {
     
     /**
 	 * 用户的构造函数.
-	 * @param username - 用户名
-	 * @param password - 密码
+	 * @param username 用户名
+	 * @param password 密码
      */
     public User(String username, String password) {
         this.username = username;
@@ -26,9 +26,9 @@ public class User {
     
     /**
 	 * 用户的构造函数.
-	 * @param username - 用户名
-	 * @param password - 密码
-	 * @param email - 电子邮件地址
+	 * @param username 用户名
+	 * @param password 密码
+	 * @param email 电子邮件地址
      */
     public User(String username, String password, String email) {
 		this(username, password);
@@ -37,10 +37,10 @@ public class User {
 
     /**
 	 * 用户的构造函数.
-	 * @param username - 用户名
-	 * @param password - 密码
-	 * @param email - 电子邮件地址
-     * @param registerTime - 注册时间
+	 * @param username 用户名
+	 * @param password 密码
+	 * @param email 电子邮件地址
+     * @param registerTime 注册时间
      */
 	public User(String username, String password, String email,
 			Date registerTime) {
@@ -95,9 +95,18 @@ public class User {
         return String.format("User[%d, %s]", uid, username);
     }
     
+    /** 用户唯一标识符 */
     private long uid;
+    
+    /** 用户名 */
     private String username;
+    
+    /** 密码 */
     private String password;
+    
+    /** 邮箱地址 */
     private String email;
+    
+    /** 注册时间 */
     private Date registerTime;
 }

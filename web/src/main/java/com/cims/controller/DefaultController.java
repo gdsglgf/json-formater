@@ -19,8 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class DefaultController {
 	/**
 	 * 显示应用程序的首页.
-	 * @param request - HttpRequest对象
-	 * @param response - HttpResponse对象
+	 * @param request HttpRequest对象
+	 * @param response HttpResponse对象
 	 * @return 一个包含首页内容的ModelAndView对象
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)

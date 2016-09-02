@@ -31,7 +31,7 @@
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="<c:url value="/" />">Home</a></li>
-					<li><a href="<c:url value="<c:url value="/records/history" />" />">History</a></li>
+					<li><a href="<c:url value="/records/history" />">History</a></li>
 					<li><a href="">Help</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

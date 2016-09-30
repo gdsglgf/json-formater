@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @Rollback
-@ContextConfiguration({"classpath:dispatcher-servlet.xml"})
+@ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/dispatcher-servlet.xml"})
 public class UserMapperTest {
     @Test
     public void testGetByUid() {

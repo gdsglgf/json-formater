@@ -1,0 +1,20 @@
+language: java
+
+jdk:
+  - oraclejdk8
+  - oraclejdk7
+
+services: mysql
+
+before_script:
+  - mysql -e 'CREATE DATABASE test;'
+  - mysql test < web/database.sql
+
+script: 
+  - mvn test -f web/pom.xml
+
+after_script:
+  - mysql -e 'DROP DATABASE test;'
+
+after_success:
+  - mvn -f web/pom.xml cobertura:cobertura coveralls:report

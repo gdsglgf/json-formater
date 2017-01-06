@@ -89,6 +89,16 @@ public class RecordController {
 		HttpSession session = request.getSession();
 		Long uid = HttpSessionParser.getUid(session);
 		log.info(String.format("uid: %d", uid));
+
+		return searchAll(uid);
+	}
+	
+	/**
+	 * 查询用户所有历史信息
+	 * @param uid 用户唯一标识符
+	 * @return 用户历史信息列表
+	 */
+	private List<RecordDTO> searchAll(Long uid) {
 		List<RecordDTO> result = new ArrayList<RecordDTO>();
 		if (uid != null) {
 			List<JSONRecord> list = recordService.searchAll(uid);
@@ -101,5 +111,25 @@ public class RecordController {
 		}
 
 		return result;
+	}
+	
+	/**
+	 * 显示用户所有历史信息页面.
+	 * @param request HttpServletRequest对象
+	 * @param response HttpServletResponse对象
+	 * @return 历史查询信息页面的ModelAndView对象
+	 */
+	@RequestMapping(value = "/all-history", method = RequestMethod.GET)
+	public ModelAndView allHistoryView(HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView view = null;
+		view = new ModelAndView("records/history2");
+		HttpSession session = request.getSession();
+		Long uid = HttpSessionParser.getUid(session);
+		log.info(String.format("uid: %d", uid));
+		List<RecordDTO> result = searchAll(uid);
+		view.addObject("rows", result);
+		view.addObject("length", result.size());
+		return view;
 	}
 }
